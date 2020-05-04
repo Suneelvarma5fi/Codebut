@@ -1,0 +1,30 @@
+<body style = "background-color: #c6a79f;">
+{% if post_list %}
+<strong><h1 style="color:#80584d;">NAKED BLOG</h1></strong>
+    <form action="{% url 'blog:homeview' %}" method="post">
+        {%csrf_token%}
+        <input type="submit" value="sortby">
+        <input type="radio" name="sortby" id = "1" value="pub_date">
+        <label for="1">Published date</label>
+        <input type="radio" name="sortby" id = "2" value="claps">
+        <label for="2">Popularity</label>
+    </form>
+    <ul style="color:#80584d;">
+        {% for post in post_list %}
+            <li>
+                <a href = "{% url 'blog:detailedview' post.post_id %}">
+                    <div style="background-color:#80584d;color:white;padding:10px;">
+                        <h3>{{post.post_title}}</h3>
+                        <h5>{{post.pub_date.day}}.{{post.pub_date.month}}.{{post.pub_date.year}}</h5>
+                    </div><br>
+                </a>
+            </li>
+        {%endfor%}
+    </ul>
+
+{%else%}
+
+<h2> Blog is Empty, Stay tuned!</h2>
+
+{%endif%}
+</body>
