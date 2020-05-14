@@ -1,17 +1,27 @@
-{% extends 'blog/details.html'%}
-{%block 'afterclap'%}
-<strong><h2 style="color:#80584d">You might like these too</h2></strong>
-<a href="{%url 'blog:homeview' %}"><h3 style="color:#80584d;">TAKE ME HOME</h3></a>
-<ul style="color:#80584d;">
-    {% for post in post_list %}
-        <li>
-            <a href = "{% url 'blog:detailedview' post.post_id %}">
-                <div style="background-color:#80584d;color:white;padding:10px;">
-                    <h3>{{post.post_title}}</h3>
-                    <h5>{{post.pub_date.day}}.{{post.pub_date.month}}.{{post.pub_date.year}}</h5>
-                </div><br>
-            </a>
-        </li>
-    {%endfor%}
-</ul>
+{% extends 'blog/details.html'  %}
+
+{%block content%}
+
+<div class="container">
+    <div><strong><h2 style="color:#cc7a8f;">Other popular posts</h2></strong></div>
+    <div class = "container-fluid">
+    <div class="d-flex flex-wrap">
+    <div class="row">
+        {% for post in post_list %}
+            <div class = "col-sm-4 d-flex clapcol">
+                    <div class = "card mt-4 mb-4">
+                        <div class = "card-body">
+                        <a href = "{% url 'blog:detailedview' post.post_id %}" class = "link">
+                        <h6>{{post.post_title}}</h6>
+                        </a>
+                        </div>
+                    </div>
+            </div>
+            
+        {% endfor %}
+    
+</div>
+</div>
+</div>
+
 {%endblock%}

@@ -1,29 +1,29 @@
-
-<!DOCTYPE html>
+{%load static%}
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-</head>
-
-<body style="background-color:#c6a79f;">
-    <div style="background-color:#80584d;color:white;padding:20px;">
-      <h2>{{title}}</h2>
-        <h5>{{pub_date.day}}.{{pub_date.month}}.{{pub_date.year}}</h5>
-      <p>{{content}}</p>
+    
+{% include 'blog/head.html' %}
+    
+<body>
+    
+    {% include 'blog/navbar.html' %}
+    
+    <div class = "container mt-4">
+        <div class="jumbotron postcontent">
+          <h1 class="display-4" style="text-align: center;">{{title}}</h1>
+          <h5 style="font-size: 15px">published on {{pub_date.day}}.{{pub_date.month}}.{{pub_date.year}}</h5>
+          <hr class="my-4" style="color: snow">
+            <p>{{content}}</p>
+          <p class="lead">
+              <form action = "{%url 'blog:claps' post_id%}" method="post">
+                {%csrf_token%}
+                <input class="btn detailbt" type="submit" value="clap">
+              </form>
+          </p>
+        </div>
     </div>
-
-
-    <div id = 'afterclap'>
-        {%block 'afterclap'%}
-        <form action = "{%url "blog:claps" post_id%}" method="post">
-            {%csrf_token%}
-            <input type="submit" value = "clap" >
-            <a href="{% url 'blog:homeview' %}"><strong style="color:#80584d;">Go Back?</strong></a>
-        </form>
-        {% endblock %}
-    </div>
-
+{%block content%}
+    
+{% endblock %}
 </body>
 </html>

@@ -1,30 +1,63 @@
-<body style = "background-color: #c6a79f;">
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+    {% include 'blog/head.html' %}
+<body>
+    <!-- As a heading -->
+    {% include 'blog/navbar.html' %}
+
 {% if post_list %}
-<strong><h1 style="color:#80584d;">NAKED BLOG</h1></strong>
+<div class="container">
+<div class="container-fluid">
     <form action="{% url 'blog:homeview' %}" method="post">
         {%csrf_token%}
-        <input type="submit" value="sortby">
-        <input type="radio" name="sortby" id = "1" value="pub_date">
-        <label for="1">Published date</label>
-        <input type="radio" name="sortby" id = "2" value="claps">
-        <label for="2">Popularity</label>
+        <table>
+            <tr>
+                <td>
+                    <input class="btn index mt-4" type="submit" value="sort">
+                </td>
+                <td>
+                    <div class="custom-control custom-radio custom-control-inline mt-4">
+                        <input type="radio" id="1" name="sortby" value="pub_date" class="custom-control-input">
+                        <label class="custom-control-label" for="1"><font style="chiller"><h>published date</h></font></label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline mt-4">
+                        <input type="radio" id="2" name="sortby" value="claps" class="custom-control-input">
+                        <label class="custom-control-label" for="2"><h>popularity</h></label>
+                    </div>
+                </td>
+            </tr>
+       </table>
     </form>
-    <ul style="color:#80584d;">
-        {% for post in post_list %}
-            <li>
-                <a href = "{% url 'blog:detailedview' post.post_id %}">
-                    <div style="background-color:#80584d;color:white;padding:10px;">
-                        <h3>{{post.post_title}}</h3>
-                        <h5>{{post.pub_date.day}}.{{post.pub_date.month}}.{{post.pub_date.year}}</h5>
-                    </div><br>
-                </a>
-            </li>
+</div>
+</div>
+        {% for row in post_list %}
+                    <div class="d-flex flex-nowrap">
+                        <div class="container">
+                        <div class="container-fluid">
+                        <div class="row">
+                        {% for post in row %}
+                                <div class="col-sm-4 d-flex column">
+                                      <div class="card mt-4 mb-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{post.post_title|upper}}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">{{post.pub_date.day}}.{{post.pub_date.month}}.{{post.pub_date.year}}</h6>
+                                            <p class="card-text">{{post.post_content|truncatechars:50}}</p>
+                                            <a href="{% url 'blog:detailedview' post.post_id %}" class="card-link stretched-link"></a>
+                                        </div>
+                                      </div>
+                                     </div>
+                        {%endfor%}
+                            </div>
+                        </div>
+                       </div>
+                    </div>
         {%endfor%}
-    </ul>
-
 {%else%}
 
 <h2> Blog is Empty, Stay tuned!</h2>
 
 {%endif%}
 </body>
+</html>

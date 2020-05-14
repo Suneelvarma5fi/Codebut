@@ -1,0 +1,139 @@
+.link{
+    font-size: 15px !important;
+    color: snow;
+}
+
+.link:hover{
+    color:snow;
+    text-decoration:none;
+    transition-duration: 0.5s;
+}
+
+
+body{
+    
+    background-image:url(images/blurdots.jpg);
+}
+
+h{
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+
+.mynav {
+}
+.navbar {
+        background-color:#cc7a8f !important;
+
+}
+.navbar .navbar-brand {
+        color: white;
+        font-weight: bolder;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 30px;
+}
+.navbar .a{
+    color: snow;
+}
+
+
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color:#cc7a8f;
+  border-color: #cc7a8f;
+  background-color: #cc7a8f;
+}
+
+
+/*DETAILEDVIEW PAGE*/
+.jumbotron {
+    color: snow !important;
+    background-color: #cc7a8f !important;
+}
+
+
+.detailbt {
+    color: snow !important;
+    background-color: #cc7a8f;
+    border-color: snow !important;
+    text-align: center;
+    padding: 5px 40px;
+    font-family: 'Monteserrat',sans-serif;
+    border-style: groove;
+}
+
+.detailbt:hover{
+    
+    color: #cc7a8f !important;
+    background-color: snow;
+    border-color: snow;
+    transition-duration: 0.5s;
+    
+}
+
+
+
+
+
+/*#############################################################*/
+
+
+
+
+/*INDEX PAGE */
+
+
+.index {
+    
+    color: snow !important;
+    background-color: #cc7a8f !important;
+    border: 1px solid snow;
+    padding: 5px 30px;
+    font-family:'Montserrat',sans-serif;
+    border-style:groove;
+    border-radius: 8px;
+}
+
+.index:hover{
+    color:snow;
+    box-shadow: 0 4px 6px 0 #ebadad;
+    background-color: #cc7a8f !important;
+    opacity: 0.8;
+    border-color: #cc7a8f !important;
+    transition-duration: 0.5s;
+}
+
+
+.column .card{
+    color : snow !important;
+    background-color:#cc7a8f!important;
+    height: 200px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.column .card:hover{
+    border: 1px solid snow;
+    box-shadow: 0 9px 8px 0 #ebadad;
+    color:snow;
+    opacity: 0.8;
+    transition-duration: 0.8s;
+}
+
+/* AFTERCLAP */ 
+
+.clapcol .card{
+    padding:inherit;
+    height : 1.5cm;
+    width: 7cm;
+    background-color: #cc7a8f;
+    box-shadow: 0 9px 8px 0 #ebadad;
+    color: snow;
+}
+
+.clapcol .card:hover{
+    border: 2px solid #cc7a8f;
+    opacity: 0.8;
+}
