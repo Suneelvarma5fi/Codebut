@@ -1,0 +1,37 @@
+{% extends 'blog/head.html' %}
+
+{%block detail%}
+
+<li class = "nav-item">
+      <a class = "nav-link" href="{% url 'post-update' object.post_id %}">Update</a>
+</li>
+
+<li class = "nav-item">
+      <a class = "nav-link" href="{% url 'post-delete' object.post_id %}">Delete</a>
+</li>
+
+{%endblock detail%}
+
+  {% block content %}
+    <div class = "container mt-4">
+        <div class="jumbotron postcontent">
+          <h1 class="display-4" style="text-align: center;">{{object.post_title}}</h1>
+          <h5 style="font-size: 15px">published on {{object.pub_date|date:"F d, Y"}}</h5>
+          <hr class="my-4" style="color: snow">
+            <p>{{object.post_content}}</p>
+          <p class="lead">
+              <form action = "{%url 'blog-claps' object.pk %}" method="post">
+                {%csrf_token%}
+                <input class="button" type="submit" value="Clap {{object.claps}}">
+              </form>
+          </p>
+        </div>
+    </div>
+
+    {% block afterclap %}
+
+    {% endblock afterclap %}
+
+  {% endblock content %}
+
+  
