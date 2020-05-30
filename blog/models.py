@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 
 class BlogPosts(models.Model):
 
-    post_id = models.IntegerField(primary_key=True)        #post_id works as primarykey
+    post_id = models.AutoField(primary_key=True)        #post_id works as primarykey
     post_title = models.CharField(max_length=150)     #post_title
     post_content = models.TextField() #content of the post
     pub_date = models.DateTimeField(default = timezone.now)  #published Date
