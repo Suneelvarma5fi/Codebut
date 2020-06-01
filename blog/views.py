@@ -9,8 +9,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import get_user
 from django.contrib.auth.models import User
-from django.contrib.auth.views import redirect_to_login
-
 class PostListView(LoginRequiredMixin,ListView):
     model = BlogPosts
     template_name = 'blog/index.html'
