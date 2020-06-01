@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['notblah.herokuapp.com']
+ALLOWED_HOSTS = ['notblah.herokuapp.com','localhost']
 
 
 # Application definition
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'django_projects.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'djangodata',
-        'USER' : 'suneelvarma',
+        'USER' : 'postgres',
         'PASSWORD' : 'Suneelvarma@55',
         'HOST' : 'localhost',
         'PORT' : '8000'
