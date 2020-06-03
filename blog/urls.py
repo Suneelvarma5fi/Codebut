@@ -2,6 +2,7 @@ from django.urls import path
 from .views import PostListView,PostDetailView,PostCreateView,PostUpdateView,PostDeleteView,UserPostView
 from . import views
 #app_name = 'blog'
+
 urlpatterns = [
     path('', PostListView.as_view(), name='blog-home'),
     path('<str:sortby>/',PostListView.as_view(),name='blog-home'),

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+from django_env import myenvdata
+myenvdata.envvar()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,9 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
+#'nan2bb_gss79hqp5)hq!rv2vos2z@$)ge9kgybjx@bmy-&sjaj'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG_VALUE') == 'True'
+#(os.environ.get('DEBUG') == 'True')
 
 ALLOWED_HOSTS = ['notblah.herokuapp.com']
 

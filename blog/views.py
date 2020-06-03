@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import get_user
 from django.contrib.auth.models import User
+
 class PostListView(LoginRequiredMixin,ListView):
     model = BlogPosts
     template_name = 'blog/index.html'
@@ -73,8 +74,11 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['post_title', 'post_content']
     template_name = 'blog/updateview.html'
 
+    def post_id_original(self):
+        return self.kwargs['pk']
+
     def form_valid(self, form):
-        form.instance.post_id = self.request.user.pk
+        form.instance.post_id = self.post_id_original()
         form.instance.author = self.request.user
         return super().form_valid(form)
 
