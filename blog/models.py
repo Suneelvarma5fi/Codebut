@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.shortcuts import reverse
+from users.models import Profile
 # Create your models here.
 
 class BlogPosts(models.Model):
@@ -11,7 +12,7 @@ class BlogPosts(models.Model):
     post_content = models.TextField() #content of the post
     pub_date = models.DateTimeField(default = timezone.now)  #published Date
     claps = models.IntegerField(default=0)     #claps for the post
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.post_title

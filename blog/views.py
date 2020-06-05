@@ -36,7 +36,7 @@ def claps(request, pk):
     post_list = post_list.filter(~Q(post_id=pk)).order_by('-claps') #filter by detail post and sort by popularity
     user = get_user(request)
 
-    if user != post.author:
+    if user != post.author.user:
         post.addclap()
         post.save()
 
@@ -54,7 +54,7 @@ class UserPostView(PostListView):
     paginate_by = 3
     def get_queryset(self):
         user = get_object_or_404(self.model,username = self.kwargs['username'])
-        return user.blogposts_set.all().order_by('-claps')
+        return user.profile.blogposts_set.all().order_by('-claps')
 
 
 # CRUD SECTION ###################################################################
@@ -65,7 +65,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/createview.html'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.profile
         return super().form_valid(form)
 
 
@@ -79,12 +79,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.post_id = self.post_id_original()
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.profile
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
-        return self.request.user == post.author
+        return self.request.user == post.author.user
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -94,4 +94,4 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        return self.request.user == post.author
+        return self.request.user == post.author.user

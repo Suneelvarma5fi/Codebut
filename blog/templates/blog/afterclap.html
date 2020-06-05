@@ -4,16 +4,16 @@
 
 <div class="container">
     {% if posts %}
-    <legend><strong><h2>Other popular posts by {{object.author.username}} </h2></strong></legend>
+    <legend><strong><h2>Other popular posts by {{object.author.user.username}} </h2></strong></legend>
             {% for post in posts %}
                 <div class="container">
                   <div class="card mt-4 mb-4 postcard">
                     <div class="card-body">
                         <h5 class="card-title titleauth">{{post.post_title|upper}}</h5>
                         <p class="card-text">{{post.post_content|truncatechars:100}}</p>
-                        <img class = "rounded-circle article-img" src="{{ user.profile.image.url }}">
-                        <a class = "muted-text" style="text-align: left;color: black;" href="{% url 'user-posts' post.author_id %}">
-                        {{post.author.username}}</a>
+                        <!--<img class = "rounded-circle article-img" src="{{ user.profile.image.url }}">-->
+                        <a class = "muted-text" style="text-align: left;color: black;" href="{% url 'user-posts' post.author.user.username %}">
+                        {{post.author.user.username}}</a>
                         <a href="{% url 'blog-detail' post.post_id %}" class="card-link ml-4"> READ </a>
                     </div>
                   </div>
