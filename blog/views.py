@@ -28,6 +28,13 @@ class PostDetailView(DetailView):
     model = BlogPosts
     template_name = 'blog/details.html'
 
+    def get_context_data(self, **kwargs):
+        '''modified to add a var to extra context "post_owner",
+            which will be True when author opens his post'''
+        context = super().get_context_data(**kwargs)
+        context['post_owner'] = self.request.user == self.model.objects.get(pk=self.kwargs['pk']).author.user
+        return context
+
 
 
 def claps(request, pk):
@@ -42,7 +49,7 @@ def claps(request, pk):
 
     frontend_reqs = {
         'object': post,
-        'posts': post_list,
+        'post_list': post_list,
     }                           
 
     return render(request, 'blog/afterclap.html', frontend_reqs)

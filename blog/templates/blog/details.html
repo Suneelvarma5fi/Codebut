@@ -2,13 +2,17 @@
 
 {%block detail%}
 
-<li class = "nav-item">
-      <a class = "nav-link" href="{% url 'post-update' object.post_id %}">Update</a>
-</li>
+  {% if post_owner %}
 
-<li class = "nav-item">
-      <a class = "nav-link" href="{% url 'post-delete' object.post_id %}">Delete</a>
-</li>
+    <li class = "nav-item">
+          <a class = "nav-link" href="{% url 'post-update' object.post_id %}">Update</a>
+    </li>
+
+    <li class = "nav-item">
+          <a class = "nav-link" href="{% url 'post-delete' object.post_id %}">Delete</a>
+    </li>
+
+  {% endif %}
 
 {%endblock detail%}
 
@@ -22,7 +26,7 @@
           <p class="lead">
               <form action = "{%url 'blog-claps' object.pk %}" method="post">
                 {%csrf_token%}
-                <input class="button" type="submit" value="Clap {{object.claps}}">
+                <input class="button" type="submit" value="Other posts by this Author">
               </form>
           </p>
         </div>

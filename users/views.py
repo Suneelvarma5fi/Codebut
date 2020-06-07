@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm,UpdateForm,ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from blog.models import BlogPosts
 # Create your views here.
 
 def register(request):
@@ -31,10 +32,12 @@ def profile(request):
 	else:
 		u_form = UpdateForm(instance=request.user)
 		p_form = ProfileUpdateForm(instance=request.user.profile)
+		post_list = BlogPosts.objects.filter(author = request.user.profile)
 
 	updateforms = {
 		'u_form' : u_form,
 		'p_form' : p_form,
+		'post_list' : post_list,
 	}
 	return render(request,'users/profile.html',updateforms)
 
