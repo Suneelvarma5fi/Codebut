@@ -1,1 +1,1 @@
-# Project link is [here](notblah.herokuapp.com)
+(notblah.herokuapp.com/blog)
