@@ -1,2 +1,1 @@
-# Django Project
-# BLOG
+# Project link is [here](notblah.herokuapp.com)
